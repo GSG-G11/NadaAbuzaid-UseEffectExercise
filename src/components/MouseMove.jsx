@@ -1,38 +1,36 @@
-// Exersice 2
 import React, { useEffect, useState } from 'react';
 
-export default function Pointer() {
+export default function MouseMove() {
   const [width, setWidth] = useState({
     mouseX: 0,
     mouseY: 0,
   });
 
-  // Handle Mousemove Event
+  const [backgroundColor, setBackgroundColor] = useState('white');
+
   const handleMouseMove = (e) => {
     let mouseX = e.screenX;
     let mouseY = e.screenY;
     if (mouseX > window.innerWidth / 2) {
-      document.body.style.background = 'blue';
+      setBackgroundColor('blue');
     } else {
-      document.body.style.background = 'tomato';
+      setBackgroundColor('tomato');
     }
-
     setWidth({ mouseX, mouseY });
   };
 
-  // UseEffect
   useEffect(() => {
-    document.addEventListener('mousemove', (e) => handleMouseMove(e));
+    document.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      document.removeEventListener('mousemove', (e) => handleMouseMove(e));
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   });
 
   const { mouseX, mouseY } = width;
   return (
-    <p>
-      I'm now in {mouseX} X and {mouseY} Y
-    </p>
+    <div style={{ background: backgroundColor, height: '97vh' }}>
+      I'm in {mouseX} X and {mouseY} Y
+    </div>
   );
 }

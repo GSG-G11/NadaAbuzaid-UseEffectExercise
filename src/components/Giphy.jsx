@@ -10,9 +10,13 @@ export default function Giphy() {
   };
 
   useEffect(() => {
-    fetch(`https://robohash.org/${word}.png?set=any&size=200x200`).then(
-      (data) => setUrl(data.url)
-    );
+    const abortController = new AbortController();
+
+    fetch(`https://robohash.org/${word}.png?set=any&size=200x200`, {
+      signal: abortController.signal,
+    }).then((data) => setUrl(data.url));
+
+    return () => abortController.abort();
   });
 
   return (
