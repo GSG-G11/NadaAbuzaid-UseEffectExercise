@@ -12,5 +12,5 @@ export default function Counter() {
       document.removeEventListener('mousedown', incrementCount);
     };
   });
-  return <p>{count}</p>;
+  return <p>{count}</p>
 }

@@ -7,26 +7,32 @@ export default function Pointer() {
     mouseY: 0,
   });
 
+  // Handle Mousemove
+  const handleMouseMove = (e) => {
+    let mouseX = e.screenX;
+    let mouseY = e.screenY;
+    if (mouseX > window.innerWidth / 2) {
+      document.body.style.background = 'blue';
+    } else {
+      document.body.style.background = 'tomato';
+    }
+
+    setWidth({ mouseX, mouseY });
+  };
+
+  // UseEffect
   useEffect(() => {
-    document.addEventListener('mousemove', (e) => {
-      let mouseX = e.screenX;
-      let mouseY = e.screenY;
-      setWidth({ mouseX, mouseY });
-    });
+    document.addEventListener('mousemove', (e) => handleMouseMove(e));
 
     return () => {
-      document.removeEventListener('mousemove', () => {});
+      document.removeEventListener('mousemove', (e) => handleMouseMove(e));
     };
   });
 
   const { mouseX, mouseY } = width;
-  let color = '';
   return (
-    <>
-      {mouseX > window.innerWidth / 2 ? (color = 'tomato') : (color = 'blue')}
-      <div style={{ background: color, height: '98vh' }}>
-        I'm now in {mouseX} X and {mouseY} Y
-      </div>
-    </>
+    <p>
+      I'm now in {mouseX} X and {mouseY} Y
+    </p>
   );
 }
