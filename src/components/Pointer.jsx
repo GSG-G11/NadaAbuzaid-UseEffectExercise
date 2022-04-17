@@ -7,7 +7,7 @@ export default function Pointer() {
     mouseY: 0,
   });
 
-  // Handle Mousemove
+  // Handle Mousemove Event
   const handleMouseMove = (e) => {
     let mouseX = e.screenX;
     let mouseY = e.screenY;
