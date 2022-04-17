@@ -1,3 +1,4 @@
+// Exercise 1
 import React, { useState, useEffect } from 'react';
 
 export default function Counter() {
