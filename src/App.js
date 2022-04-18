@@ -1,14 +1,16 @@
 import './App.css';
 import Counter from './components/Counter';
-import Giphy from './components/Giphy';
+import Robohash from './components/Robohash';
 import MouseMove from './components/MouseMove';
+import GiphyApi from './components/Giphy';
 
 function App() {
   return (
     <>
       <Counter />
-      <Giphy />
+      <Robohash />
       <MouseMove />
+      <GiphyApi />
     </>
   );
 }
