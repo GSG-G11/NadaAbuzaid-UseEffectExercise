@@ -17,7 +17,6 @@ export default function User() {
 
   useEffect(() => {
     const abortController = new AbortController();
-
     fetch(`https://jsonplaceholder.typicode.com/users`, {
       signal: abortController.signal,
     })
@@ -27,31 +26,21 @@ export default function User() {
         isLoading(false);
       })
       .catch((err) => console.log(err));
-
     return () => {
       abortController.abort();
     };
   }, []);
-
   const deleteUser = (id) => {
     setData((prevData) => {
       return prevData.filter((user) => user.id !== id);
     });
   };
-
   const editDataForm = (user) => {
     setEdit(true);
     setEditData(user);
   };
-
   const editUser = (e) => {
     e.preventDefault();
-    data.map((user) => {
-      return user.id === editData.id
-        ? { ...user, email: editData.email, name: editData.name }
-        : user;
-    });
-
     setData((prev) =>
       prev.map((user) => {
         return user.id === editData.id
@@ -59,7 +48,6 @@ export default function User() {
           : user;
       })
     );
-
     setEdit(false);
   };
 
@@ -79,18 +67,30 @@ export default function User() {
             value={editData.name}
             name="name"
             onChange={(e) => handleChange(e)}
-            style={{ display: 'inline-block', margin: '1em', padding: '0.5em' }}
+            style={{
+              display: 'inline-block',
+              margin: '1em',
+              padding: '0.5em',
+            }}
           />
           <input
             type="text"
             value={editData.email}
             name="email"
             onChange={(e) => handleChange(e)}
-            style={{ display: 'inline-block', margin: '1em', padding: '0.5em' }}
+            style={{
+              display: 'inline-block',
+              margin: '1em',
+              padding: '0.5em',
+            }}
           />
           <button
             onClick={(e) => editUser(e)}
-            style={{ display: 'inline-block', margin: '1em', padding: '0.5em' }}
+            style={{
+              display: 'inline-block',
+              margin: '1em',
+              padding: '0.5em',
+            }}
           >
             Edit
           </button>
