@@ -17,14 +17,14 @@ export default function Robohash() {
     })
       .then((data) => setUrl(data.url))
       .catch(console.log);
-    
+
     return () => abortController.abort();
   }, [word]);
 
   return (
     <div>
       <hr />
-      <h1>Giphy</h1>
+      <h1>Robohash</h1>
       <input type="text" placeholder="Search Here..." onChange={handleChange} />
       <br /> <img src={url} alt="Img" />
       <hr />
